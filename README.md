@@ -1,5 +1,7 @@
 # MMPipe — Multimodal Unix Fix
 
+[![Tests](https://github.com/bretkerr/MMPipe/actions/workflows/test.yml/badge.svg)](https://github.com/bretkerr/MMPipe/actions/workflows/test.yml)
+
 ![MMPipe Logo](assets/mmpipe-logo.jpg)
 
 The Unix pipe (`|`) assumes everything is text. When you pipe binary media (an image, a video frame, an audio clip), the receiving program has no idea what it's looking at — no MIME type, no boundaries, just a stream of bytes that text-rendering tools immediately corrupt.
