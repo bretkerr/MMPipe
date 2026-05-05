@@ -10,6 +10,13 @@ MMPipe fixes this with the **Universal Media Pipe Protocol (UMPP)**: a lightweig
 
 ---
 
+## Demo
+
+<!-- TODO: replace with real video URL -->
+[![MMPipe Demo](https://img.shields.io/badge/demo-coming%20soon-lightgrey)](https://github.com/bretkerr/MMPipe)
+
+---
+
 ## The Protocol
 
 Every UMPP stream begins with a signature header block:
