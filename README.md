@@ -1,5 +1,7 @@
 # MMPipe — Multimodal Unix Fix
 
+![MMPipe Logo](assets/mmpipe-logo.jpg)
+
 The Unix pipe (`|`) assumes everything is text. When you pipe binary media (an image, a video frame, an audio clip), the receiving program has no idea what it's looking at — no MIME type, no boundaries, just a stream of bytes that text-rendering tools immediately corrupt.
 
 MMPipe fixes this with the **Universal Media Pipe Protocol (UMPP)**: a lightweight, dependency-free framing layer that wraps binary payloads with machine-readable metadata headers, routes them through a vision AI (Google Gemini), and hands plain UTF-8 text back to the pipe so legacy tools like `grep`, `awk`, and `sed` work exactly as Thompson intended.
