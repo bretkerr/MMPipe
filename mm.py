@@ -12,6 +12,8 @@ import urllib.request
 import json
 import base64
 
+__version__ = "2.0.0"
+
 # The Protocol Signature
 PROTOCOL_MAGIC = b"MMP/1.0\n"
 

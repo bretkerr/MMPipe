@@ -89,6 +89,108 @@ The "Sacred Contract" of Unix pipes is restored: every boundary between programs
 
 ---
 
+## v2: Attachment Support
+
+v2 adds three progressive enhancements on top of the core MMP/1.0 protocol.
+All are optional — the core `mcat` / `analyze_vision` pipeline is unchanged.
+
+### Architecture
+
+```
+  Fast path (pick → analyze → filter):
+  ┌─────────┐   MMP/1.0   ┌──────────────────┐   UTF-8   ┌───────────┐
+  │ mmpick  │────────────▶│  analyze_vision  │──────────▶│ grep/awk  │
+  │ (Finder)│             │  (Gemini 2.5)    │           │   /sed    │
+  └─────────┘             └──────────────────┘           └───────────┘
+
+  Visual path (pick → preview → analyze → filter):
+  ┌─────────┐   MMP/1.0   ┌─────────┐   MMP/1.0   ┌──────────────────┐
+  │ mmpick  │────────────▶│ mmkitty │────────────▶│  analyze_vision  │──▶ ...
+  └─────────┘             │(renders)│             └──────────────────┘
+                          └─────────┘
+                          (non-destructive)
+
+  Full IDE (mmtui):
+  ┌────────────────────────────────────────────────────────┐
+  │  File Browser  │  Pipeline Builder  │     Output       │
+  │  ────────────  │  ─────────────────  │  ──────────────  │
+  │  📁 ~/Downloads│  analyze_vision    │  [image/jpeg]   │
+  │ ▶ 📷 photo.jpg │  mmkitty           │  The image...   │
+  │  📷 logo.png   │  grep red          │                  │
+  └────────────────────────────────────────────────────────┘
+```
+
+### Upgrade path
+
+| Tool | Install | Use when |
+|------|---------|----------|
+| `mmpick` | `source shell/mmpick.sh` | You want a native Finder dialog instead of typing paths |
+| `mmkitty` | Python 3.9+ (stdlib only) | You're in Kitty terminal and want inline image previews |
+| `mmtui` | `pip install textual` | You want a full IDE-style pipeline builder |
+
+### One-line install (all three)
+
+```bash
+bash install.sh
+source ~/.zshrc   # or ~/.bashrc
+```
+
+---
+
+### mmpick — macOS File Picker
+
+Opens a native macOS file-picker dialog and emits one MMP/1.0 envelope per
+selected file. Supports multi-file selection.
+
+```bash
+# Source once (or add to your rc file via install.sh)
+source shell/mmpick.sh
+
+# Use in a pipeline
+mmpick | analyze_vision "What is in this photo?"
+mmpick | mmkitty | analyze_vision | grep -i red
+```
+
+The envelope emitted by `mmpick` includes an extra header:
+```
+X-MMP-Source: filename.jpg
+```
+
+---
+
+### mmkitty — Kitty Graphics Protocol Bridge
+
+Renders an inline image thumbnail in [Kitty terminal](https://sw.kovidgoyal.net/kitty/)
+and passes the original MMP/1.0 envelope downstream **unchanged** — it is a
+non-destructive tee in the pipeline.
+
+```bash
+mcat photo.jpg | mmkitty | analyze_vision "Describe this"
+```
+
+Falls back to a text summary on stderr in non-Kitty terminals. Supports PNG
+and JPEG natively; GIF and WebP are converted via macOS `sips`.
+
+---
+
+### mmtui — Full-Screen TUI
+
+```bash
+pip install textual
+python3 tui/mmtui.py
+```
+
+| Shortcut | Action |
+|----------|--------|
+| `Space` / `Ctrl+A` | Attach highlighted file as pipeline source |
+| `Ctrl+R` | Run pipeline |
+| `Ctrl+X` | Clear output |
+| `a` | Add command to pipeline |
+| `d` | Delete selected step |
+| `u` / `j` | Move step up / down |
+
+---
+
 ## Supported Image Formats
 
 UMPP carries any MIME type. `analyze_vision` currently accepts:

@@ -4,6 +4,21 @@ All notable changes to MMPipe are documented here.
 
 ## [Unreleased]
 
+## [2.0.0] — 2026-05-05
+
+### Added
+- `shell/mmpick.sh` — macOS native file-picker (osascript) that emits MMP/1.0 envelopes
+  with `X-MMP-Source` header; supports multi-file selection; works in bash and zsh
+- `bridge/mmkitty.py` — non-destructive Kitty Graphics Protocol bridge; renders inline
+  image thumbnails in Kitty terminal (PNG via f=100, JPEG via f=88, GIF/WebP via sips);
+  passes original MMP/1.0 envelope downstream unchanged
+- `tui/mmtui.py` — full-screen Textual TUI with File Browser, Pipeline Builder, and live
+  Output panel; keyboard-driven pipeline assembly and execution
+- `install.sh` — one-line installer that wires up all aliases and functions into
+  `~/.zshrc` or `~/.bashrc`
+- `__version__ = "2.0.0"` version string in `mm.py`
+- v2 architecture section in README with ASCII art diagram and upgrade-path table
+
 ## [0.1.0] — 2026-05-05
 
 ### Added
