@@ -1,0 +1,58 @@
+{
+  "brief": "MMPipe v2 — X post announcement graphic",
+  "deliverable": "PNG @2x, 1200×675px (Twitter card landscape)",
+  "model": "Gemini Nano Banana (Gemini 2.5 Flash Image)",
+  "voice": "Felix — Mother London CCO: playful, editorial, Scarry-comfortable. Technical wit without trying too hard.",
+
+  "prompt": "A cinematic cross-section of a glowing Unix pipe system rendered like a 1970s instructional diagram crossed with a neon-lit server room. The pipe is a large translucent industrial tube running left-to-right across the frame. Inside it: a JPEG photo of a dog, a PNG icon, and a short video clip are tumbling through like luggage on a conveyor belt — each wrapped in a glowing MMP/1.0 header tag like a luggage label. On the left entry point, a macOS Finder file-picker dialog floats above the pipe mouth (labeled 'mmpick'). In the center, a Kitty terminal renders the dog photo inline as a tiny glowing rectangle on the pipe wall (labeled 'mmkitty'). On the right exit, clean green UTF-8 text streams out into a vintage terminal screen where 'grep red' is waiting. A small full-screen TUI window floats above the exit, labeled 'mmtui', showing three glowing panels. The overall palette is deep charcoal and near-black with neon green data glows, warm amber pipe metal, and a single red notification dot (winking Easter egg). Mood: confident, a little cheeky, genuinely useful.",
+
+  "composition": {
+    "orientation": "landscape",
+    "layout": "left-to-right pipeline flow with labeled stations",
+    "focal_point": "the pipe cross-section center, where mmkitty renders the image inline",
+    "depth": "slight three-quarter isometric angle, not fully flat",
+    "negative_space": "dark charcoal top-right corner for text overlay (the X post copy goes here)"
+  },
+
+  "palette": {
+    "background": "#0d0d0d — near-black",
+    "pipe_metal": "#c8883a — warm amber, slightly oxidized",
+    "data_glow": "#39ff14 — neon green (matches mmpipe logo mm color)",
+    "text_label_bg": "#1a1a2e — dark navy for MMP header tags",
+    "accent_red": "#ff3b30 — single red notification dot, used once only",
+    "utf8_output": "#e8e8e8 — off-white terminal text"
+  },
+
+  "elements_to_include": [
+    "MMP/1.0 header tag visible on at least one media item in the pipe (like a luggage label)",
+    "The word 'mmpick' in a pill label above the left pipe mouth",
+    "The word 'mmkitty' in a pill label at the center station",
+    "A tiny dog photo rendering inline on the pipe wall (Kitty terminal aesthetic — pixel-edged)",
+    "The word 'mmtui' floating above the right section with a three-panel window chrome",
+    "The exit end of the pipe shows clean green text streaming out — grep-style",
+    "Subtle Ken Thompson ghost portrait watermark in the dark background (very faint, tasteful)"
+  ],
+
+  "elements_to_avoid": [
+    "Any AI model branding visible in the scene",
+    "Robots or AI faces",
+    "Photorealistic humans",
+    "Cluttered type — labels only, no paragraphs",
+    "Blue color palette (too generic tech)",
+    "The word 'ChatGPT' or any competitor name"
+  ],
+
+  "easter_eggs": [
+    "The dog in the pipe is a Shiba Inu (Doge nod)",
+    "One of the MMP header tags reads 'Content-Type: image/good-boy'",
+    "The grep command at the exit reads: grep -i 'red' | # found: 1 match"
+  ],
+
+  "output_spec": {
+    "format": "PNG",
+    "resolution": "2400×1350px @2x (displays at 1200×675)",
+    "safe_zone": "keep right 30% of frame clear of key elements for text overlay",
+    "no_text_in_render": false,
+    "label_text_ok": true
+  }
+}
